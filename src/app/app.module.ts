@@ -2,15 +2,62 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { IncomeComponent } from './income/income.component';
+import { ExpenseComponent } from './expense/expense.component';
+import { InvestmentComponent } from './investment/investment.component';
+import { HeaderComponent } from './header/header.component';
+import { IncomeListComponent } from './income/income-list/income-list.component';
+import { IncomeItemComponent } from './income/income-list/income-item/income-item.component';
+import { AppRoutingModule } from './appRouting.module';
+import { HomeComponent } from './home/home.component';
+import { CategoryService } from './shared/category.service';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
+import { IncomeService } from './income/income.service';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { IncomeModalComponent } from './income/income-list/income-modal/income-modal.component';
+import { ExpenseService } from './expense/expense.service';
+import { ExpenseItemComponent } from './expense/expense-list/expense-item/expense-item.component';
+import { ExpenseListComponent } from './expense/expense-list/expense-list.component';
+import { ExpenseModalComponent } from './expense/expense-list/expense-modal/expense-modal.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { AuthGuard } from './auth/auth-guard.service';
+import { GooglePieChartService } from './home/google-pie-chart.service';
+import { PieChartComponent } from './home/pie-chart/piechart.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExpenseComponent,
+    ExpenseListComponent,
+    ExpenseItemComponent,
+    ExpenseModalComponent,
+    InvestmentComponent,
+    HeaderComponent,
+    IncomeComponent,
+    IncomeListComponent,
+    IncomeItemComponent,
+    IncomeModalComponent,
+    HomeComponent,
+    SigninComponent,
+    SignupComponent,
+    PieChartComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Ng2GoogleChartsModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService ],
+  bootstrap: [AppComponent],
+  entryComponents: [IncomeModalComponent, ExpenseModalComponent]
 })
 export class AppModule { }

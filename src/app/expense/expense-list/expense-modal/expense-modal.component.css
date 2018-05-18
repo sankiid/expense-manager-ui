@@ -1,0 +1,10 @@
+.fade {
+    opacity:1;
+}
+.modal-dialog{
+    width: 500px;
+    margin-top: 190px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
