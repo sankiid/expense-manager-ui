@@ -10,10 +10,10 @@ export class AuthService{
 
     constructor(private http:Http, private router:Router){}
     
-    signupUser(email:string, password: string){
+    signupUser(email:string, password: string, name:string){
         const url:string = Globals.BASE_USE + 'register';
         const headers = new Headers({'Content-Type':'application/json'});
-        const data = {"userName": email, "password" : password};
+        const data = {"userName": email, "password" : password, "name":name};
         this.http.put(url, data, {headers: headers}).subscribe(
             (sucess) => (console.log(sucess)),
             (error) => (console.log(error))

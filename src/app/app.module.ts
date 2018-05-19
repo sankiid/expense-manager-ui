@@ -27,6 +27,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { AuthGuard } from './auth/auth-guard.service';
 import { GooglePieChartService } from './home/google-pie-chart.service';
 import { PieChartComponent } from './home/pie-chart/piechart.component';
+import { AccountComponent } from './account/account.component';
+import { BankService } from './shared/bank.service';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { PieChartComponent } from './home/pie-chart/piechart.component';
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    PieChartComponent
+    PieChartComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { PieChartComponent } from './home/pie-chart/piechart.component';
     Ng2GoogleChartsModule,
     NgbModule.forRoot()
   ],
-  providers: [ CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService ],
+  providers: [ CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
   bootstrap: [AppComponent],
   entryComponents: [IncomeModalComponent, ExpenseModalComponent]
 })
