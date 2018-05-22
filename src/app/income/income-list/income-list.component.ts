@@ -22,7 +22,7 @@ export class IncomeListComponent implements OnInit {
     @Inject(IncomeComponent) private incomeComponent:IncomeComponent) { }
 
   ngOnInit() {
-    this.incomeService.getIncomeForLastOneMonth(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.incomeService.getIncomeForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
       .subscribe(
         (response: Response) => {
           const res = response.json();

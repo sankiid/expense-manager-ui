@@ -19,6 +19,10 @@
                   </option>
               </select>
           </div>
+          <div class="form-group">
+            <label class="sr-only" for="accountNumber">Amount</label>
+            <input type="input" class="form-control" id="accountNumber" placeholder="Last 4 digit of Account Number" name="accountNumber" ngModel/>
+          </div>
           <button class="btn btn-primary" type="submit">Add Bank</button>
       </form>
       </div>
@@ -31,8 +35,7 @@
                   <th scope="col">ID</th>
                   <th scope="col">AMOUNT</th>
                   <th scope="col">BANK</th>
-                  <th scope="col">CREATE</th>
-                  <th scope="col">UPDATE</th>
+                  <th scope="col">ACCOUNT</th>
                   <th scope="col">ACTION</th>
               </tr>
           </thead>
@@ -41,8 +44,7 @@
                   <td scope="row">{{ idx+1 }}</td>
                   <td scope="row">{{ account.amount }}</td>
                   <td scope="row">{{ account.bank.name }}</td>
-                  <td scope="row">{{ account.createdAt }}</td>
-                  <td scope="row">{{ account.updatedAt }}</td>
+                  <td scope="row">{{ account.accountNumber }}</td>
                   <td scope="row">
                       <button type="submit" class="btn btn-info" (click)="onEditBank($event, account)">Edit</button>
                       <button type="submit" class="btn btn-danger" (click)="onDeleteBank($event, account.id)">Delete</button>

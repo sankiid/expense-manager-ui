@@ -17,7 +17,7 @@ const appRoute: Routes = [
     {path:'investment', component: InvestmentComponent, canActivate: [AuthGuard]  },
     {path:'signup', component: SignupComponent},
     {path:'signin', component: SigninComponent},
-    {path:'account', component: AccountComponent}
+    {path:'account', component: AccountComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

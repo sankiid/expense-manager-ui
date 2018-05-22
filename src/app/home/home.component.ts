@@ -15,13 +15,13 @@ import { PieChartConfig } from './modal/pie-chart.config';
 @Injectable()
 export class HomeComponent implements OnInit {
 
-  income: any[];
-  incomecnf: PieChartConfig;
-  incomeEle: String;
+  public income: any[];
+  public incomecnf: PieChartConfig;
+  public incomeEle: String;
 
-  expense: any[];
-  expensecnf: PieChartConfig;
-  expenseEle: String;
+  public expense: any[];
+  public expensecnf: PieChartConfig;
+  public expenseEle: String;
 
   constructor(private incService:IncomeService, private expService:ExpenseService){}
 
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     const map:any = {};
     let datas = [];
     datas.push(['category', 'amount']);
-    this.incService.getIncomeForLastOneMonth(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.incService.getIncomeForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
       .subscribe((res: Response) => {
         res.json()['data'].forEach(e => {
           let cat:string = e.category.name;
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
 
   public getExpense() {
     let datas = [['category', 'amount']];
-    this.expService.getExpenseForLastOneMonth(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.expService.getExpenseForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
       .subscribe((response: Response) => {
         const res = response.json();
         const data = res['data'];

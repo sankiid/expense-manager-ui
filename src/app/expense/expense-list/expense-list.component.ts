@@ -22,7 +22,7 @@ export class ExpenseListComponent implements OnInit {
     @Inject(ExpenseComponent) private expenseComponent:ExpenseComponent) { }
 
   ngOnInit() {
-    this.expenseService.getExpenseForLastOneMonth(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.expenseService.getExpenseForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
       .subscribe(
         (response: Response) => {
           const res = response.json();

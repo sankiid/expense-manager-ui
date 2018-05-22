@@ -19,7 +19,7 @@ export class ExpenseService{
         return opts;
     }
 
-    getExpenseForLastOneMonth(start:number, end:number){
+    getExpenseForDuration(start:number, end:number){
         const url:string = Globals.BASE_USE + 'api/expense/get/'+start+"/"+end;
         return this.http.get(url, this.getHeaders());
     }

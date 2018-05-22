@@ -19,7 +19,7 @@ export class IncomeService{
         return opts;
     }
 
-    getIncomeForLastOneMonth(start:number, end:number){
+    getIncomeForDuration(start:number, end:number){
         const url:string = Globals.BASE_USE + 'api/income/get/'+start+"/"+end;
         return this.http.get(url, this.getHeaders());
     }
