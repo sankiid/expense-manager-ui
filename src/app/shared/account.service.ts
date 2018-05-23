@@ -6,7 +6,7 @@ import { Account } from "./account.model";
 
 @Injectable()
 export class AccountService{
-
+    
     constructor(private http:Http, private authService: AuthService){}
 
     save(account:Account){
@@ -14,6 +14,11 @@ export class AccountService{
         return this.http.put(url, account, this.getHeaders());
     }
     
+    delete(id: number) {
+        const url:string = Globals.BASE_USE + 'api/account/delete/'+id;
+        return this.http.delete(url, this.getHeaders());
+    }
+
     getHeaders() {
         let header = new Headers();
         header.append('Content-Type', 'application/json');
@@ -21,5 +26,10 @@ export class AccountService{
         let opts = new RequestOptions();
         opts.headers = header;
         return opts;
+    }
+
+    getAllAccountInfo() {
+        const url:string = Globals.BASE_USE + 'api/account/getall';
+        return this.http.get(url, this.getHeaders());
     }
 }

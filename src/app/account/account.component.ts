@@ -24,18 +24,40 @@ export class AccountComponent implements OnInit {
           this.banks.push(bank);
         });
     });
+
+    this.accountServive.getAllAccountInfo().subscribe(
+      (res) => {
+        const accts = res.json()['data'];
+        accts.forEach(acct => {
+          const bank:Bank = new Bank(acct.bank.id, acct.bank.name);
+          const account:Account = new Account(acct.id, bank, acct.amount, acct.accountNumber);
+          this.accounts.push(account);
+        });
+      }
+    );
+
   }
 
-  onAddBank(form:NgForm) {
+  public onDeleteBank(event:Event, id:number){
+    this.accountServive.delete(id).subscribe(
+      (res) => {
+        const index = this.accounts.findIndex(e => e.id === id);
+        this.accounts.splice(index, 1);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+
+  public onAddBank(form:NgForm) {
     let bankName:string = null;
         this.banks.forEach( b => {
         if(b.id == form.value.bank){
           bankName = b.name;
         }
     })
-    console.log(form.value.amount);
-    console.log(form.value.bank);
-    console.log(form.value.accountNumber);
     let bank:Bank = new Bank(form.value.bank, bankName);
     let account:Account = new Account(-1, bank, form.value.amount, form.value.accountNumber);
     this.accountServive.save(account)
@@ -44,7 +66,6 @@ export class AccountComponent implements OnInit {
         res = res.json();
         res = res['data'];
         account.id = res['id'];
-        console.log(res);
         this.accounts.push(account);
       },
       (err) => {
