@@ -4,6 +4,7 @@ import { BankService } from '../shared/bank.service';
 import { Account } from '../shared/account.model';
 import { NgForm } from '@angular/forms';
 import { AccountService } from '../shared/account.service';
+import { AccountModalComponent } from './account-modal/account-modal.component';
 
 @Component({
   selector: 'app-account',
@@ -14,7 +15,7 @@ export class AccountComponent implements OnInit {
 
   public banks:Bank[] = [];
   public accounts:Account [] = [];
-  constructor(private bankService:BankService, private accountServive:AccountService) { }
+  constructor(private bankService:BankService, private accountServive:AccountService, private accountComp:AccountModalComponent) { }
 
   ngOnInit() {
     this.bankService.getBanks().subscribe((res) => {
@@ -72,6 +73,10 @@ export class AccountComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  public onEditBank(event:Event, account:Account){
+    this.accountComp.onEdit(account, this.banks, this.accounts);
   }
 
 }

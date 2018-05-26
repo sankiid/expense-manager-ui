@@ -9,6 +9,7 @@
                 <th scope="col">AMOUNT</th>
                 <th scope="col">DATE</th>
                 <th scope="col">CATEGORY</th>
+                <th scope="col">ACCOUNT</th>
                 <th scope="col">NOTES</th>
                 <th scope="col">ACTION</th>
             </tr>
@@ -19,6 +20,7 @@
                 <td scope="row">{{ income.amount }}</td>
                 <td scope="row">{{ income.date }}</td>
                 <td scope="row">{{ income.category.name }}</td>
+                <td scope="row">{{ income.account.bank.name }} : {{ income.account.accountNumber }}</td>
                 <td scope="row">{{ income.notes }}</td>
                 <td scope="row">
                     <button type="submit" class="btn btn-info" (click)="onEditIncome($event, income)">Edit</button>

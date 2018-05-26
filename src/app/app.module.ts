@@ -30,6 +30,7 @@ import { PieChartComponent } from './home/pie-chart/piechart.component';
 import { AccountComponent } from './account/account.component';
 import { BankService } from './shared/bank.service';
 import { AccountService } from './shared/account.service';
+import { AccountModalComponent } from './account/account-modal/account-modal.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AccountService } from './shared/account.service';
     SigninComponent,
     SignupComponent,
     PieChartComponent,
-    AccountComponent
+    AccountComponent,
+    AccountModalComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +62,8 @@ import { AccountService } from './shared/account.service';
     Ng2GoogleChartsModule,
     NgbModule.forRoot()
   ],
-  providers: [  AccountService, CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
+  providers: [  AccountModalComponent, AccountService, CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
   bootstrap: [AppComponent],
-  entryComponents: [IncomeModalComponent, ExpenseModalComponent]
+  entryComponents: [IncomeModalComponent, ExpenseModalComponent, AccountModalComponent]
 })
 export class AppModule { }

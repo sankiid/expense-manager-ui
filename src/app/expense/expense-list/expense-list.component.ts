@@ -7,6 +7,8 @@ import * as Globals from '../../globals';
 import { ExpenseComponent } from '../expense.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ExpenseModalComponent } from './expense-modal/expense-modal.component';
+import { Bank } from '../../shared/bank.model';
+import { Account } from '../../shared/account.model';
 
 @Component({
   selector: 'app-expense-list',
@@ -22,14 +24,16 @@ export class ExpenseListComponent implements OnInit {
     @Inject(ExpenseComponent) private expenseComponent:ExpenseComponent) { }
 
   ngOnInit() {
-    this.expenseService.getExpenseForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.expenseService.getExpenseForDuration(Globals.MONTH_START, Globals.TODAY)
       .subscribe(
         (response: Response) => {
           const res = response.json();
           const data = res['data'];
           data.forEach(element => {
             const cat:Category = new Category(element.category.id, element.category.name);
-            const inc: Expense = new Expense(element.id, element.amount, element.date, element.notes, cat);
+            const bank:Bank = new Bank(element.account.bank.id, element.account.bank.name);
+            const account:Account = new Account(element.account.id, bank, element.account.amount, element.account.accountNumber);
+            const inc: Expense = new Expense(element.id, element.amount, element.date, element.notes, cat, account);
             this.expenses.push(inc);
           });
         },
@@ -45,8 +49,12 @@ export class ExpenseListComponent implements OnInit {
     return this.expenseComponent.categories;
   }
 
+  public getAccounts(){
+    return this.expenseComponent.accounts;
+  }
+
   public onEditExpense(event:Event, expense:Expense){
-    this.expenseModal.editExpense(expense, this.getCategories(), this.expenses);
+    this.expenseModal.editExpense(expense, this.getCategories(), this.expenses, this.getAccounts());
   }
 
   public onDeleteExpense(event:Event, id:number){

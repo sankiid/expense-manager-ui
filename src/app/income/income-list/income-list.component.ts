@@ -7,6 +7,8 @@ import * as Globals from '../../globals';
 import { IncomeComponent } from '../income.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { IncomeModalComponent } from './income-modal/income-modal.component';
+import { Account } from '../../shared/account.model';
+import { Bank } from '../../shared/bank.model';
 
 @Component({
   selector: 'app-income-list',
@@ -22,14 +24,16 @@ export class IncomeListComponent implements OnInit {
     @Inject(IncomeComponent) private incomeComponent:IncomeComponent) { }
 
   ngOnInit() {
-    this.incomeService.getIncomeForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.incomeService.getIncomeForDuration(Globals.MONTH_START, Globals.TODAY)
       .subscribe(
         (response: Response) => {
           const res = response.json();
           const data = res['data'];
           data.forEach(element => {
             const cat:Category = new Category(element.category.id, element.category.name);
-            const inc: Income = new Income(element.id, element.amount, element.date, element.notes, cat);
+            const bank:Bank = new Bank(element.account.bank.id, element.account.bank.name);
+            const account:Account = new Account(element.account.id, bank, element.account.amount, element.account.accountNumber);
+            const inc: Income = new Income(element.id, element.amount, element.date, element.notes, cat, account);
             this.incomes.push(inc);
           });
         },
@@ -45,8 +49,12 @@ export class IncomeListComponent implements OnInit {
     return this.incomeComponent.categories;
   }
 
+  public getAccounts(){
+    return this.incomeComponent.accounts;
+  }
+
   public onEditIncome(event:Event, income:Income){
-    this.incomeModal.editIncome(income, this.getCategories(), this.incomes);
+    this.incomeModal.editIncome(income, this.getCategories(), this.incomes, this.getAccounts());
   }
 
   public onDeleteIncome(event:Event, id:number){

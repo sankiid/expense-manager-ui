@@ -1,4 +1,5 @@
 import { Category } from "../shared/category.model";
+import { Account } from "../shared/account.model";
 
 export class Expense {
     public id:number;
@@ -6,13 +7,15 @@ export class Expense {
     public date:string;
     public notes:string;
     public category:Category
+    public account:Account
 
-    constructor(id:number, amount:number, date:string, notes:string, category:Category){
+    constructor(id:number, amount:number, date:string, notes:string, category:Category, account:Account){
         this.id = id;
         this.amount = amount;
         this.date = date;
         this.notes = notes;
         this.category = category;
+        this.account = account;
     }
     
 }

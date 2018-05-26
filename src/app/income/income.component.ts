@@ -8,6 +8,9 @@ import { Income } from './income.model';
 import { AuthService } from '../auth/auth.service';
 import { IncomeService } from './income.service';
 import { IncomeItemComponent } from './income-list/income-item/income-item.component';
+import { Account } from '../shared/account.model';
+import { AccountService } from '../shared/account.service';
+import { Bank } from '../shared/bank.model';
 
 @Component({
   selector: 'app-income',
@@ -17,7 +20,8 @@ import { IncomeItemComponent } from './income-list/income-item/income-item.compo
 export class IncomeComponent implements OnInit {
   
   public categories:Category[] = [];
-  constructor(private categoryService : CategoryService, private authService:AuthService, private incomeService:IncomeService) { }
+  public accounts : Account[] = [];
+  constructor(private categoryService : CategoryService, private authService:AuthService, private incomeService:IncomeService, private accountService:AccountService) { }
 
   ngOnInit() {
     this.categoryService.getCategoriesByType(Type.income)
@@ -32,10 +36,27 @@ export class IncomeComponent implements OnInit {
         },
         (error) => console.log(error)
       );
+
+      this.accountService.getAllAccountInfo()
+      .subscribe(
+        (res:Response) => {
+          const data = res.json()['data'];
+          data.forEach(element => {
+            const bank:Bank = new Bank(element.bank.id, element.bank.name);
+            const account: Account = new Account(element.id, bank, element.amount, element.accountNumber);
+            this.accounts.push(account);
+          });
+        }
+      );
+
   }
 
   public getCategories(){
     return this.categories;
+  }
+
+  public getAccounts(){
+    return this.accounts;
   }
 
 }

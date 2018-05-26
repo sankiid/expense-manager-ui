@@ -19,6 +19,14 @@
           <input type="date" class="form-control" id="date" placeholder="Date" name="date" ngModel/>
       </div>
       <div class="form-group">
+        <label class="sr-only" for="account">From Account</label>
+        <select name="category" class="form-control" id="accountId" name="accountId" ngModel>
+            <option *ngFor="let account of accounts" value="{{account.id}}">
+                {{account.bank.name}} : {{account.accountNumber}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
           <label class="sr-only" for="notes">Notes</label>
           <input type="textarea" class="form-control" id="notes" placeholder="Tell me about expense" name="notes" ngModel/>
       </div>

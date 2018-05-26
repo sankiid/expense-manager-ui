@@ -6,7 +6,7 @@ import { Account } from "./account.model";
 
 @Injectable()
 export class AccountService{
-    
+  
     constructor(private http:Http, private authService: AuthService){}
 
     save(account:Account){
@@ -31,5 +31,10 @@ export class AccountService{
     getAllAccountInfo() {
         const url:string = Globals.BASE_USE + 'api/account/getall';
         return this.http.get(url, this.getHeaders());
+    }
+
+    public updateAccount(account: Account) {
+        const url:string = Globals.BASE_USE + 'api/account/update';
+        return this.http.post(url, account, this.getHeaders());
     }
 }
