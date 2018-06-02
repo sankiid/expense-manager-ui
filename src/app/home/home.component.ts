@@ -23,23 +23,39 @@ export class HomeComponent implements OnInit {
   public expensecnf: PieChartConfig;
   public expenseEle: String;
 
-  constructor(private incService:IncomeService, private expService:ExpenseService){}
+  public inc: any[];
+  public inccnf: PieChartConfig;
+  public incEle: String;
+
+  public exp: any[];
+  public expcnf: PieChartConfig;
+  public expEle: String;
+
+  constructor(private incService:IncomeService, private expService:ExpenseService) {}
 
   ngOnInit() {
-    this.income = this.getIncomes();
+    this.income = this.getIncomes(Globals.MONTH_START, Globals.TODAY);
     this.incomecnf = new PieChartConfig('Income View', 0.4);
     this.incomeEle = 'incomeEle';
 
-    this.expense = this.getExpense();
+    this.expense = this.getExpense(Globals.MONTH_START, Globals.TODAY);
     this.expensecnf = new PieChartConfig('Expense View', 0.4);
     this.expenseEle = 'expenseEle';
+
+    this.inc = this.getIncomes(Globals.LAUNCH_DAY, Globals.TODAY);
+    this.inccnf = new PieChartConfig('Income View', 0.4);
+    this.incEle = 'incEle';
+
+    this.exp = this.getExpense(Globals.LAUNCH_DAY, Globals.TODAY);
+    this.expcnf = new PieChartConfig('Expense View', 0.4);
+    this.expEle = 'expEle';
   }
 
-  public getIncomes() {
+  public getIncomes(start:number, end:number) {
     const map:any = {};
     let datas = [];
     datas.push(['category', 'amount']);
-    this.incService.getIncomeForDuration(Globals.MONTH_START, Globals.TODAY)
+    this.incService.getIncomeForDuration(start, end)
       .subscribe((res: Response) => {
         res.json()['data'].forEach(e => {
           let cat:string = e.category.name;
@@ -57,9 +73,9 @@ export class HomeComponent implements OnInit {
       return datas;
   }
 
-  public getExpense() {
+  public getExpense(start:number, end:number) {
     let datas = [['category', 'amount']];
-    this.expService.getExpenseForDuration(Globals.MONTH_START, Globals.TODAY)
+    this.expService.getExpenseForDuration(start, end)
       .subscribe((response: Response) => {
         const res = response.json();
         const data = res['data'];

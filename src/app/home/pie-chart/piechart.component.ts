@@ -18,6 +18,8 @@ export class PieChartComponent implements OnInit {
     constructor(private _pieChartService: GooglePieChartService) {}
 
     ngOnInit(): void {
-        this._pieChartService.BuildPieChart(this.elementId, this.data, this.config); 
+        setTimeout(() => {
+            this._pieChartService.BuildPieChart(this.elementId, this.data, this.config); 
+        }, 1000);
     }
 }
