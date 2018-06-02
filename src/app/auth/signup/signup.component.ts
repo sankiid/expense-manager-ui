@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { AlertService } from '../../alert.service';
+import { IAlert } from '../../alert.modal';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +11,9 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  @Input()
+  public alerts: Array<IAlert> = [];
+  constructor(private authService: AuthService, private alertService:AlertService) { }
 
   ngOnInit() {
   }
@@ -19,5 +23,10 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     const name = form.value.name;
     this.authService.signupUser(email, password, name);
+    this.alerts = this.alertService.getAlerts();
+  }
+
+  closeAlert(alert){
+    this.alertService.closeAlert(alert);
   }
 }

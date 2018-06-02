@@ -31,6 +31,7 @@ import { AccountComponent } from './account/account.component';
 import { BankService } from './shared/bank.service';
 import { AccountService } from './shared/account.service';
 import { AccountModalComponent } from './account/account-modal/account-modal.component';
+import { AlertService } from './alert.service';
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { AccountModalComponent } from './account/account-modal/account-modal.com
     Ng2GoogleChartsModule,
     NgbModule.forRoot()
   ],
-  providers: [  AccountModalComponent, AccountService, CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
+  providers: [  AlertService, AccountModalComponent, AccountService, CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
   bootstrap: [AppComponent],
   entryComponents: [IncomeModalComponent, ExpenseModalComponent, AccountModalComponent]
 })

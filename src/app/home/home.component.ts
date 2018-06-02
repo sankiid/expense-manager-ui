@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     const map:any = {};
     let datas = [];
     datas.push(['category', 'amount']);
-    this.incService.getIncomeForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.incService.getIncomeForDuration(Globals.MONTH_START, Globals.TODAY)
       .subscribe((res: Response) => {
         res.json()['data'].forEach(e => {
           let cat:string = e.category.name;
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
 
   public getExpense() {
     let datas = [['category', 'amount']];
-    this.expService.getExpenseForDuration(Date.now() - Globals.DAY_30_MILLI_SEC, Date.now())
+    this.expService.getExpenseForDuration(Globals.MONTH_START, Globals.TODAY)
       .subscribe((response: Response) => {
         const res = response.json();
         const data = res['data'];

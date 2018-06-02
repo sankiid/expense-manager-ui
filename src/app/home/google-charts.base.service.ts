@@ -7,6 +7,7 @@ export class GoogleChartsBaseService {
 
   protected buildChart(data: any[], chartFunc: any, options: any) : void {
     var func = (chartFunc, options) => {
+      console.log(data);
       var datatable = google.visualization.arrayToDataTable(data);
       chartFunc().draw(datatable, options);
     };   
