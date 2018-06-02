@@ -15,6 +15,7 @@ export class AccountComponent implements OnInit {
 
   public banks:Bank[] = [];
   public accounts:Account [] = [];
+  public totalAmount:number = 0.0;
   constructor(private bankService:BankService, private accountServive:AccountService, private accountComp:AccountModalComponent) { }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class AccountComponent implements OnInit {
           const account:Account = new Account(acct.id, bank, acct.amount, acct.accountNumber);
           this.accounts.push(account);
         });
+        this.getTotalAmount();
       }
     );
 
@@ -44,6 +46,7 @@ export class AccountComponent implements OnInit {
       (res) => {
         const index = this.accounts.findIndex(e => e.id === id);
         this.accounts.splice(index, 1);
+        this.getTotalAmount();
       },
       (err) => {
         console.log(err);
@@ -68,6 +71,7 @@ export class AccountComponent implements OnInit {
         res = res['data'];
         account.id = res['id'];
         this.accounts.push(account);
+        this.getTotalAmount();
       },
       (err) => {
         console.log(err);
@@ -77,6 +81,15 @@ export class AccountComponent implements OnInit {
 
   public onEditBank(event:Event, account:Account){
     this.accountComp.onEdit(account, this.banks, this.accounts);
+    this.getTotalAmount();
+  }
+
+  public getTotalAmount(){
+    let total:number = 0;
+    for(let i=0;i<this.accounts.length;++i){
+      total += this.accounts[i].amount
+    }
+    this.totalAmount  = total;
   }
 
 }

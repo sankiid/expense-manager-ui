@@ -18,7 +18,7 @@ import { Account } from '../../shared/account.model';
 export class ExpenseListComponent implements OnInit {
 
   public expenses : Expense[] = [];
-
+  public totalAmount:number = 0;
   constructor( private expenseModal:ExpenseModalComponent,
     private expenseService:ExpenseService, 
     @Inject(ExpenseComponent) private expenseComponent:ExpenseComponent) { }
@@ -36,6 +36,7 @@ export class ExpenseListComponent implements OnInit {
             const inc: Expense = new Expense(element.id, element.amount, element.date, element.notes, cat, account);
             this.expenses.push(inc);
           });
+          this.getTotalAmount();
         },
         (error) => console.log(error)
       );
@@ -43,6 +44,7 @@ export class ExpenseListComponent implements OnInit {
 
   public addExpenseRecord(expense:Expense){
     this.expenses.push(expense);
+    this.getTotalAmount();
   }
 
   public getCategories(){
@@ -55,6 +57,7 @@ export class ExpenseListComponent implements OnInit {
 
   public onEditExpense(event:Event, expense:Expense){
     this.expenseModal.editExpense(expense, this.getCategories(), this.expenses, this.getAccounts());
+    this.getTotalAmount();
   }
 
   public onDeleteExpense(event:Event, id:number){
@@ -62,10 +65,19 @@ export class ExpenseListComponent implements OnInit {
       (res) => {
         const index = this.expenses.findIndex(e => e.id === id);
         this.expenses.splice(index, 1);
+        this.getTotalAmount();
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  public getTotalAmount(){
+    let total:number = 0;
+    for(let i=0;i<this.expenses.length;++i){
+      total += this.expenses[i].amount
+    }
+    this.totalAmount  = total;
   }
 }

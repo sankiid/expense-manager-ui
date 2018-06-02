@@ -18,7 +18,7 @@ import { Bank } from '../../shared/bank.model';
 export class IncomeListComponent implements OnInit {
 
   public incomes : Income[] = [];
-
+  public totalAmount:number = 0;
   constructor( private incomeModal:IncomeModalComponent,
     private incomeService:IncomeService, 
     @Inject(IncomeComponent) private incomeComponent:IncomeComponent) { }
@@ -36,6 +36,7 @@ export class IncomeListComponent implements OnInit {
             const inc: Income = new Income(element.id, element.amount, element.date, element.notes, cat, account);
             this.incomes.push(inc);
           });
+          this.getTotalAmount();
         },
         (error) => console.log(error)
       );
@@ -43,6 +44,7 @@ export class IncomeListComponent implements OnInit {
 
   public addIncomeRecord(income:Income){
     this.incomes.push(income);
+    this.getTotalAmount();
   }
 
   public getCategories(){
@@ -55,6 +57,7 @@ export class IncomeListComponent implements OnInit {
 
   public onEditIncome(event:Event, income:Income){
     this.incomeModal.editIncome(income, this.getCategories(), this.incomes, this.getAccounts());
+    this.getTotalAmount();
   }
 
   public onDeleteIncome(event:Event, id:number){
@@ -62,10 +65,19 @@ export class IncomeListComponent implements OnInit {
       (res) => {
         const index = this.incomes.findIndex(e => e.id === id);
         this.incomes.splice(index, 1);
+        this.getTotalAmount();
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  public getTotalAmount(){
+    let total:number = 0;
+    for(let i=0;i<this.incomes.length;++i){
+      total += this.incomes[i].amount
+    }
+    this.totalAmount  = total;
   }
 }
