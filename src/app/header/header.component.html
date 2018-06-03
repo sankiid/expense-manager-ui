@@ -12,9 +12,9 @@
     <div id="navbar" class="navbar-collapse collapse" [ngbCollapse]="isCollapsed">
       <ul class="nav navbar-nav" *ngIf="authService.isAuthenticated()">
         <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="/account">Account</a></li>
         <li routerLinkActive="active"><a routerLink="/income">Income</a></li>
         <li routerLinkActive="active"><a routerLink="/expense">Expense</a></li>
-        <li routerLinkActive="active"><a routerLink="/account">Account</a></li>
         <li routerLinkActive="active"><a routerLink="/investment">Investment</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

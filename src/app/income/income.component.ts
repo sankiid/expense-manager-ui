@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../shared/category.service';
 import { Response } from '@angular/http';
 import { Category } from '../shared/category.model';
@@ -11,6 +11,8 @@ import { IncomeItemComponent } from './income-list/income-item/income-item.compo
 import { Account } from '../shared/account.model';
 import { AccountService } from '../shared/account.service';
 import { Bank } from '../shared/bank.model';
+import { IAlert } from '../alert.modal';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-income',
@@ -21,7 +23,10 @@ export class IncomeComponent implements OnInit {
   
   public categories:Category[] = [];
   public accounts : Account[] = [];
-  constructor(private categoryService : CategoryService, private authService:AuthService, private incomeService:IncomeService, private accountService:AccountService) { }
+  @Input()
+  public alerts: Array<IAlert> = [];
+  
+  constructor(private categoryService : CategoryService, private authService:AuthService, private incomeService:IncomeService, private accountService:AccountService, private alertService:AlertService) { }
 
   ngOnInit() {
     this.categoryService.getCategoriesByType(Type.income)
@@ -49,6 +54,10 @@ export class IncomeComponent implements OnInit {
         }
       );
 
+      if(this.accounts == null || this.accounts.length == 0){
+        this.alertService.setAlert(21, 'warning','Please add Account details before adding any expense');
+        this.alerts = this.alertService.getAlerts();
+      }
   }
 
   public getCategories(){
@@ -57,6 +66,10 @@ export class IncomeComponent implements OnInit {
 
   public getAccounts(){
     return this.accounts;
+  }
+
+  closeAlert(alert){
+    this.alertService.closeAlert(alert);
   }
 
 }

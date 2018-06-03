@@ -17,11 +17,7 @@ export class AuthService{
         const data = {"userName": email, "password" : password, "name":name};
         this.http.put(url, data, {headers: headers}).subscribe(
             (sucess) => {
-                this.alertService.setAlert({
-                    id: 2,
-                    type: 'success',
-                    message: 'Account created successfully. Welcome to the world of savings'
-                });
+                this.alertService.setAlert(12,'success','Account created successfully. Welcome to the world of savings');
             },
             (error) => {
                 error = error.json();
@@ -29,11 +25,7 @@ export class AuthService{
                 if(error['code'] == 900){
                     message = 'Unable to create account. User already exist with this mail'
                 }
-                this.alertService.setAlert({
-                    id: 3,
-                    type: 'danger',
-                    message: message
-                });
+                this.alertService.setAlert(13, 'danger', message);
             }
         );
     }
@@ -52,11 +44,7 @@ export class AuthService{
                 this.router.navigate(['\home']);
             },
             (error) => {
-                this.alertService.setAlert({
-                    id: 1,
-                    type: 'danger',
-                    message: 'Invalid username or password'
-                });
+                this.alertService.setAlert(11, 'danger','Invalid username or password');
             }
         );
     }

@@ -3,6 +3,9 @@
         <h2>Income Information</h2>
     </div>
     <div class="panel-body">
+        <p *ngFor="let alert of alerts">
+            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{alert.message}}</ngb-alert>
+        </p>
         <app-income-list></app-income-list>
     </div>
 </div>

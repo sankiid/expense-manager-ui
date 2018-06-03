@@ -3,11 +3,15 @@ import { IAlert } from "./alert.modal";
 export class AlertService{
   
     public alerts: Array<IAlert> = [];
-
-    setAlert(alert:IAlert){
-        this.alerts.push(alert);
-    }
     
+    setAlert(_id:number, _type:string, _message:string){
+        this.alerts.push({
+            id: _id,
+            type:  _type,
+            message: _message
+        });
+    }
+
     getAlerts(){
         return this.alerts;
     }
