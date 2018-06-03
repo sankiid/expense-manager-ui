@@ -59,5 +59,6 @@ export class AuthService{
 
     signout(){
         this.token = null;
+        this.router.navigate(["signin"]);
     }
 }

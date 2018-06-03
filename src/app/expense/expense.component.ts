@@ -51,13 +51,14 @@ export class ExpenseComponent implements OnInit {
             const account: Account = new Account(element.id, bank, element.amount, element.accountNumber);
             this.accounts.push(account);
           });
+          if(this.accounts == null || this.accounts.length == 0){
+            this.alertService.setAlert(21, 'warning','Please add Account details before adding any expense');
+            this.alerts = this.alertService.getAlerts();
+          } else {
+            this.alerts = [];
+          }
         }
       );
-
-      if(this.accounts == null || this.accounts.length == 0){
-        this.alertService.setAlert(21, 'warning','Please add Account details before adding any expense');
-        this.alerts = this.alertService.getAlerts();
-      }
   }
 
   public getCategories(){
