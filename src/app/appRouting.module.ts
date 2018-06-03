@@ -15,6 +15,7 @@ const appRoute: Routes = [
     {path:'income', component: IncomeComponent, canActivate: [AuthGuard]  },
     {path:'expense', component: ExpenseComponent, canActivate: [AuthGuard]  },
     {path:'investment', component: InvestmentComponent, canActivate: [AuthGuard]  },
+    {path:'profile', component: InvestmentComponent, canActivate: [AuthGuard]  },
     {path:'signup', component: SignupComponent},
     {path:'signin', component: SigninComponent},
     {path:'account', component: AccountComponent, canActivate: [AuthGuard]}

@@ -7,7 +7,8 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  
+  isCollapsed = true;
   constructor(public authService:AuthService) { }
 
   ngOnInit() {
@@ -15,6 +16,10 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.authService.signout();
+  }
+
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 
 }

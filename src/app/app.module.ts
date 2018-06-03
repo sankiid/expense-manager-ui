@@ -61,6 +61,7 @@ import { AlertService } from './alert.service';
     FormsModule,
     ReactiveFormsModule,
     Ng2GoogleChartsModule,
+    ReactiveFormsModule,
     NgbModule.forRoot()
   ],
   providers: [  AlertService, AccountModalComponent, AccountService, CategoryService, AuthService, IncomeService, IncomeModalComponent, NgbActiveModal, ExpenseService, ExpenseModalComponent, AuthGuard, GooglePieChartService, BankService ],
