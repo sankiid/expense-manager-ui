@@ -42,16 +42,17 @@ export class AccountComponent implements OnInit {
   }
 
   public onDeleteBank(event:Event, id:number){
-    this.accountServive.delete(id).subscribe(
-      (res) => {
-        const index = this.accounts.findIndex(e => e.id === id);
-        this.accounts.splice(index, 1);
-        this.getTotalAmount();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    console.log("opration not supported.");
+    // this.accountServive.delete(id).subscribe(
+    //   (res) => {
+    //     const index = this.accounts.findIndex(e => e.id === id);
+    //     this.accounts.splice(index, 1);
+    //     this.getTotalAmount();
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
   }
 
 

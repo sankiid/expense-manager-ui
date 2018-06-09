@@ -3,31 +3,33 @@
 <div>
     <H2>Expense Records</H2>
     <div><h3><p>Total Amount: &#8377; {{totalAmount}}</p></h3></div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">AMOUNT</th>
-                <th scope="col">DATE</th>
-                <th scope="col">CATEGORY</th>
-                <th scope="col">ACCOUNT</th>
-                <th scope="col">NOTES</th>
-                <th scope="col">ACTION</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let exp of expenses; let idx = index">
-                <td scope="row">{{ idx+1 }}</td>
-                <td scope="row">{{ exp.amount }}</td>
-                <td scope="row">{{ exp.date }}</td>
-                <td scope="row">{{ exp.category.name }}</td>
-                <td scope="row">{{ exp.account.bank.name }} : {{ exp.account.accountNumber }}</td>
-                <td scope="row">{{ exp.notes }}</td>
-                <td scope="row">
-                    <button type="submit" class="btn btn-info" (click)="onEditExpense($event, exp)">Edit</button>
-                    <button type="submit" class="btn btn-danger" (click)="onDeleteExpense($event, exp.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive"> 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">AMOUNT</th>
+                    <th scope="col">DATE</th>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">ACCOUNT</th>
+                    <th scope="col">NOTES</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exp of expenses; let idx = index">
+                    <td scope="row">{{ idx+1 }}</td>
+                    <td scope="row">{{ exp.amount }}</td>
+                    <td scope="row">{{ exp.date }}</td>
+                    <td scope="row">{{ exp.category.name }}</td>
+                    <td scope="row">{{ exp.account.bank.name }} : {{ exp.account.accountNumber }}</td>
+                    <td scope="row">{{ exp.notes }}</td>
+                    <td scope="row">
+                        <button type="submit" class="btn btn-info" (click)="onEditExpense($event, exp)">Edit</button>
+                        <button type="submit" class="btn btn-danger" (click)="onDeleteExpense($event, exp.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

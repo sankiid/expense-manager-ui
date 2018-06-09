@@ -1,28 +1,20 @@
 <div class="container">
     <h3>Monthly View</h3>
-    <div class="divTable">
-        <div class="divTableBody">
-            <div class="divTableRow">
-                <div class="divTableCell">
-                    <pie-chart [data]="income" [config]="incomecnf" [elementId]="incomeEle"></pie-chart>
-                </div>
-                <div class="divTableCell">
-                    <pie-chart [data]="expense" [config]="expensecnf" [elementId]="expenseEle"></pie-chart>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+            <pie-chart [data]="income" [config]="incomecnf" [elementId]="incomeEle"></pie-chart>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+            <pie-chart [data]="expense" [config]="expensecnf" [elementId]="expenseEle"></pie-chart>
         </div>
     </div>
     <h3>Aggregate View</h3>
-    <div class="divTable">
-        <div class="divTableBody">
-            <div class="divTableRow">
-                <div class="divTableCell">
-                    <pie-chart [data]="inc" [config]="inccnf" [elementId]="incEle"></pie-chart>
-                </div>
-                <div class="divTableCell">
-                    <pie-chart [data]="exp" [config]="expcnf" [elementId]="expEle"></pie-chart>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                <pie-chart [data]="inc" [config]="inccnf" [elementId]="incEle"></pie-chart>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+                <pie-chart [data]="exp" [config]="expcnf" [elementId]="expEle"></pie-chart>
         </div>
     </div>
 </div>

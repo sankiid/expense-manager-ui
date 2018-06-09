@@ -30,29 +30,31 @@
     <div>
       <H2>Bank Records</H2>
       <div><h3><p>Total Amount: &#8377; {{totalAmount}}</p></h3></div>
-      <table class="table table-hover">
-          <thead>
-              <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">AMOUNT</th>
-                  <th scope="col">BANK</th>
-                  <th scope="col">ACCOUNT</th>
-                  <th scope="col">ACTION</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let account of accounts; let idx = index">
-                  <td scope="row">{{ idx+1 }}</td>
-                  <td scope="row">{{ account.amount }}</td>
-                  <td scope="row">{{ account.bank.name }}</td>
-                  <td scope="row">{{ account.accountNumber }}</td>
-                  <td scope="row">
-                      <button type="submit" class="btn btn-info" (click)="onEditBank($event, account)">Edit</button>
-                      <button type="submit" class="btn btn-danger" (click)="onDeleteBank($event, account.id)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+      <div class="table-responsive"> 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">AMOUNT</th>
+                    <th scope="col">BANK</th>
+                    <th scope="col">ACCOUNT</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let account of accounts; let idx = index">
+                    <td scope="row">{{ idx+1 }}</td>
+                    <td scope="row">{{ account.amount }}</td>
+                    <td scope="row">{{ account.bank.name }}</td>
+                    <td scope="row">{{ account.accountNumber }}</td>
+                    <td scope="row">
+                        <button type="submit" class="btn btn-info" (click)="onEditBank($event, account)">Edit</button>
+                        <!--<button type="submit" class="btn btn-danger" (click)="onDeleteBank($event, account.id)">Delete</button>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
   </div>
   </div>
 </div>

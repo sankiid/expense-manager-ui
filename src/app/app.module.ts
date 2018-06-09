@@ -32,6 +32,7 @@ import { BankService } from './shared/bank.service';
 import { AccountService } from './shared/account.service';
 import { AccountModalComponent } from './account/account-modal/account-modal.component';
 import { AlertService } from './alert.service';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AlertService } from './alert.service';
     SignupComponent,
     PieChartComponent,
     AccountComponent,
-    AccountModalComponent
+    AccountModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
